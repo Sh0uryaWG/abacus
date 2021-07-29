@@ -1,53 +1,113 @@
-console.log("GET")
+// ॐ
+// global variable
+// global rows and column
+const row =7;
+const column =4;
+tUB = [1,2,3,4,5,6,7]
+// bar
+const bar =  document.getElementById("bar")
+const barButton = document.getElementById(`show-hide`)
+let barAnimationOccurence = true
+let barAnimationTime = 0.3
+// bar elements -> forms
+const firstValue  = document.getElementById(`firstvalue`);
+const secondValue = document.getElementById(`secondvalue`);
+const operator    = document.getElementById(`operator`);
+const ans	      = document.getElementById(`ans`);
+let 	validOperation = true
+// selecting input value elements
+const value1  = document.getElementById(`value1`);
+const value2  = document.getElementById(`value2`);
+const value3  = document.getElementById(`value3`);
+const value4  = document.getElementById(`value4`);
+const value5  = document.getElementById(`value5`);
+const value6  = document.getElementById(`value6`);
+const value7  = document.getElementById(`value7`);
+// beads movement time
+let beadMovementTime = 0.5
+// flash game difficulty
+let fGD = 100
+// selecting "flash games" button and sH button
+let level1 = false;
+let level2 = false;
+let level3 = false;
+let level4 = false;
+// level = [level1 : false, level2 : false, level3 : false,   level4 : false,]
+const fG = document.getElementById(`flashGame`);
+const sH = document.getElementById(`sH`);
+// storing generated Number
+let gNum
+let show = true
+output = []
+valueArray = [value1, value2, value3, value4, value5, value6, value7]
+valueArrayNum = [Number(value1.value), Number(value2.value), Number(value3.value), Number(value4.value), Number(value5.value), Number(value6.value), Number(value7.value)]
+var sum = 0
 
+// key events
 document.onkeydown = checkKey;
-
 function checkKey(e) {
-    var event = window.event ? window.event : e;
-    console.log(event.keyCode)
-    if (event.keyCode == '67') {
-    	// alert("k is finally pressed")
-    	hardReset()
-    } else if (event.keyCode == '65')
-     {getInputValue()
-    } else if (event.keyCode == '82') {
-    	reset()
-    } else if (event.keyCode == '70') {
-    	f()
-    }
-  }
-//document.getElementById("finalAns").addEventListener("click", console.log(`fv: ${document.getElementById("firstValue")}`))
+	// body...
+	var event = window.event ? window.event : e;
+	// console.log(event.keyCode);
+	if (event.keyCode == `65`) {
+		// key pressed is A
+		getInputValue();
+	} else if (event.keyCode == `82`) {
+		// key pressed is R
+		reset();
+	} else if (event.keyCode == `72`) {
+		// key pressed is H
+		Sh();
+	} else if (event.keyCode == `70`) {
+		// key pressed is F
+		flashGame(fGD);
+	} else if (event.keyCode == `39`) {
+		// key pressed is `->`
+		barAnimationOccurence = true;
+		showHide();
+	} else if (event.keyCode == `37`) {
+		// key pressed is `<-`
+		barAnimationOccurence = false;
+		showHide();
+	} else if (event.keyCode == `67`) {
+		// key pressed is C
+		hardReset();
+	} else if (event.keyCode == `86`) {
+		// key pressed is V
+		removeValue();
+	}
+}
 
-let sum = 0;
+
+function showHide() {
+	// body...
+	if (barAnimationOccurence == true) {
+		bar.style.animation = `show ${barAnimationTime}s linear 1  forwards`;
+		barButton.title = `close the bar`
+		barAnimationOccurence = false;
+		barButton.textContent = `<-`;
+	} else if (barAnimationOccurence == false) {
+		bar.style.animation = `hide ${barAnimationTime}s linear 1  forwards`;
+		barButton.title = `Open Level selector and calculator`
+		barAnimationOccurence = true;
+		barButton.textContent = `->`;
+	}
+}
 
 function getInputValue() {
-	// Selecting the input element and get its value 
-	let firstValue = Number(document.getElementById("firstValue").value);
-	let secondValue = Number(document.getElementById("secondValue").value);
-	let operator = String(document.getElementById("operator").value);
-	let b1 = document.getElementById("value1");
-	let b2 = document.getElementById("value2");
-	let b3 = document.getElementById("value3");
-	let b4 = document.getElementById("value4");
-	//b = [b4:]
-	array = [b1, b2, b3, b4]
-	// Displaying the value
-	//alert(`firstValue:${firstValue}, secondValue:${secondValue}, operator:${operator} `);
-	console.log(typeof firstValue, typeof secondValue, typeof operator)
-
-	if (operator == 'add') {
-		sum = firstValue + secondValue
-		console.log(sum);
-		// break
-	} else {
-		sum = firstValue - secondValue
-		console.log(sum)
+	// body...
+	reset()
+	if (String(operator.value) == `add` && validOperation == true) {
+		sum = Number(firstValue.value) + Number(secondValue.value);
+		
+	} else if(String(operator.value) == `min` && validOperation == true) {
+		sum = Number(firstValue.value) - Number(secondValue.value);
+		
 	}
-	
-  var output = [],
+	var output = [],
   sNumber = sum.toString();
-  if (sNumber.length < 4) {
-			for (var w = sNumber.length + 1; w <= 4; w++) {
+  if (sNumber.length < 7) {
+			for (var w = sNumber.length + 1; w <= 7; w++) {
 				output.push(+sNumber.charAt(w))
 			}
 		}
@@ -55,314 +115,111 @@ function getInputValue() {
 		
     output.push(+sNumber.charAt(i));
 	}
-  //output.reverse()
- //  let outputForDummy = output;
-	// return outputForDummy;
-	// // return firstValueBoi = firstValue;
-	// // return secondValueBoi = secondValue;	
- //  console.log(output)
-  puttingValue(output, array)
+	puttingValue(output)
 }
-let globallyGeneratedVariable
 
-function generate(argument) {
+function puttingValue(sum) {
 	// body...
-	// console.log("random")
-	var fVNum = Math.floor((Math.random() * 100) + 1);
-	globallyGeneratedVariable = fVNum
-	console.log(fVNum)
-	document.getElementById("firstValue").value = String(fVNum)
-	getInputValue()
-	document.getElementById("f").textContent = "hide"
-}
-// var fVNum2 = fVNum
-function f() {
-	// body...
-	var fV = document.getElementById("firstValue")
-	var num = fV.value
-	// let fVNum = 7
-	if (num == 0) {
-		fV.value = globallyGeneratedVariable
-		console.log('f1', globallyGeneratedVariable)
-		document.getElementById("f").textContent = 'hide'
-		getInputValue()
-	} else {
-		hardReset()
-		document.getElementById("f").textContent = 'show'
+	if (sum.length >= 8) {
+		alert(`please enter a valid digit`)
 	}
-}
-
-//console.log(`sum otside function: ${sum}`)
-function puttingValue(sum, valueArray) {
-	// body...
 	for (var i = sum.length - 1; i >= 0; i--) {
-		console.log(sum[i+1], "i:",i)
-		let valueShowcase = document.querySelector(`#value${i+1}`);
-		valueShowcase.value = String(sum[i])
+		document.querySelector(`#value${i+1}`).value = String(sum[i]);
 	}
-	assignBead()
+	assignBead(sum)
 }
 
-
-
-function assignBead() {
+function assignBead(sum) {
 	// body...
-	reset()
-	let b1 = document.getElementById("value1");
-	let b2 = document.getElementById("value2");
-	let b3 = document.getElementById("value3");
-	let b4 = document.getElementById("value4");
-	let v = [b1, b2, b3, b4]
-	reset(v, false)
-	let b = [ Number(b1.value), Number(b2.value), Number(b3.value), Number(b4.value)
-		// {"b1" : b1}, 
-		// {"b2" : b2}, 
-		// {"b3" : b3}, 
-		// {"b4" : b4} 
-	]
-	let f = [{"b1":""}, {"b2":""}, {"b3":""}, {"b4":""}]
-	console.log(b)
-	// if (b1 || b2 || b3 || b4 >9 || b1 || b2 || b3 || b4 < 0  ) {
-	// 	alert("please enter valid digit");
-	// 	b.forEach(element => element.value = "0")
-	// } else {
-	// 	console.log("Pass")
-	// }
-	// if (b.forEach() > 9) {
-	// 	alert("hmmmmmmm")
-	// }
-	//console.log(b)
-	for (var i = b.length + 1; i >= 0; i--) {
-		//console.log(b[i])
-		if (b[i] > 9 || b[i] < 0) {//console.log("Fail");
-			alert("please enter valid digit");
-			hardReset()
-			// for (var w = v.length - 1; i <= 0; i++) {
-			// 	//changeValue(v[w])
-			// 	v[w].value = "7";
-			// 	console.log(v[w].value);
-			// }
-			v.forEach(element => element.value = "0")
-			break
-		} else if(b[i] > 4) {
-			console.log("Seperate", b[i])
-			// v[i] = 5 + b[i]-5
-			// console.log(v[i])
-			f[i] = 5;
-			let u = document.querySelector(`.column-bead${i+1}`);
-			u.style.animation = "moveUpperBead .35s linear 1 forwards"
-			u.children[0].children[0].style.animation = "changingColor .35s linear 1 forwards"
-			//u.style.transform = "translateY(40%)"
-			//u.children[0].children[0].style.fill = "#D2042D"
-			f[i] = b[i]-5
-			let ip = i
-			movingLowerBead(f[i], f, ip)
-			// for (var i = f.length - 1; i >= 0; i--) {
-			// 	console.log(f[i])
-			// }
-			console.log(f)
-		} else if(b[i] <= 4){
-			console.log("less than/ equal to 4")
-			ip = b[i]
-			gg = i
-			console.log("ip:",ip)
-			movingLowerBead4(b[i], f, ip, gg)
-		}
+	for (var i = sum.length; i >= 1; i--) {
+		if (sum[i-1] <= -1 ) {
+			alert(`please enter a valid digit`)
+		} else if (sum[i-1] <= 4) {
+			num = sum[i-1]
+			for (var num = sum[i-1] ; num >= 1; num--) {
+				document.querySelector(`.bead${num}Row${i}`).style.animation = `lowerbead ${beadMovementTime}s linear 1  forwards`;
+				document.querySelector(`.bead${num}Row${i}`).children[0].children[0].style.animation = `color ${beadMovementTime}s linear 1  forwards`;
+			}
+		} else if (sum[i-1] >= 5) {
+			let num = sum[i-1];
+			document.querySelector(`.column-bead${i}`).style.animation = `upperBead ${beadMovementTime}s linear 1  forwards`;
+			document.querySelector(`.column-bead${i}`).children[0].children[0].style.animation = `color ${beadMovementTime}s linear 1  forwards`;
+			num = num - 5;
+			for (w = num; w >= 1; w-- ) {
+				document.querySelector(`.bead${w}Row${i}`).style.animation = `lowerbead ${beadMovementTime}s linear 1  forwards`;
+				document.querySelector(`.bead${w}Row${i}`).children[0].children[0].style.animation = `color ${beadMovementTime}s linear 1  forwards`;
+			}
+		} 
 	}
 }
-
-
-function movingLowerBead(argument, f, ip) {
-	console.log('f:',f)
+function clickity(argument) {
 	// body...
-	for (var i = f[ip] - 1; i >= 0; i--) {
-		console.log("argument:" ,argument);
-		console.log('ip:',ip);
-		console.log("i:", i);
-		var selectedLowerColumn = document.querySelector(`.bead${i+1}Row${ip+1}`)
-		console.log(selectedLowerColumn)
-		selectedLowerColumn.style.animation = "movingLowerBead .35s linear 1 forwards"
-		selectedLowerColumn.children[0].children[0].style.animation = "changingColor .35s linear 1 forwards"
-		//selectedLowerColumn.style.transform = "translateY(60%)"
-		//selectedLowerColumn.children[0].children[0].style.fill = "#D2042D"
-		//document.querySelector(`bead${i}row1`).style.transform = "translateY(-40%)"
-	}
-}
-
-
-function movingLowerBead4(argument, f, ip, gg) {
-	console.log('f:',f)
-	// body...
-	for (var i = ip - 1; i >= 0; i--) {
-		console.log("argument:" ,argument);
-		console.log('ip:',ip);
-		console.log("i:", i);
-		var selectedLowerColumn = document.querySelector(`.bead${i+1}Row${gg+1}`)
-		//console.log(selectedLowerColumn)
-		selectedLowerColumn.style.animation = "movingLowerBead .35s linear 1 forwards"
-		selectedLowerColumn.children[0].children[0].style.animation = "changingColor .35s linear 1 forwards"
-		//selectedLowerColumn.style.transform = "translateY(60%)"
-		//selectedLowerColumn.children[0].children[0].style.fill = "#D2042D"
-		//u.children[0].children[0].style.fill = "#D2042D"
-		//document.querySelector(`bead${i}row1`).style.transform = "translateY(-40%)"
-	}
+	document.querySelector(`.reset-button`).style.animation = `clickReset ${beadMovementTime}s linear 1  forwards`;
 }
 
 function reset() {
 	// body...
-	//document.querySelector(".bead").style.transform = "translateY(190%)"
-	// if (hardreset =  true) {
-	// 	v[1].value = "0"
-	// 	v[2].value = "0"
-	// 	v[3].value = "0"
-	// 	v[4].value = "0"
-	// }
-	
-	//sum = 0
-	var row = 4;
-	var column = 4;
-	for (var i = row - 0; i >= 1; i--) {
-	// Things[i]
-	
-	for (var w = column - 0; w >= 1; w--) {
-		//console.log(`row:${i};column${w}`);
-		console.log("reseting")
-		var selectedColumn = document.querySelector(`.bead${i}Row${w}`);
-		selectedColumn.style.animation = "reverseMovingLowerBead .35s linear 1 forwards"
-		//selectedColumn.style.transform = "translateY(190%)"
-		selectedColumn.children[0].children[0].style.animation = "reverseChangingColor .35s linear 1 forwards"
-		
-		var selectedUpperColumn = document.querySelector(`.column-bead${w}`);
-		console.log(w)
-		console.log(selectedUpperColumn)
-		selectedUpperColumn.style.animation = "reverseMoveUpperBead .35s linear 1 forwards"
-		//selectedUpperColumn.style.transform = "translateY(10%)"
-		selectedUpperColumn.children[0].children[0].style.animation = "reverseChangingColor .35s linear 1 forwards"
-		
-		//console.log(selectedColumn);
-	}
-	
-
-	}
-
+	for (var i = row ; i >=1; i--) {
+		for (var w = column; w >=1; w--) {
+			document.querySelector(`.bead${w}Row${i}`).style.animation = `reverselowerbead ${beadMovementTime}s linear 1  forwards`;
+			document.querySelector(`.column-bead${i}`).style.animation = `reverseupperbead ${beadMovementTime}s linear 1  forwards`;
+			document.querySelector(`.bead${w}Row${i}`).children[0].children[0].style.animation = `reversecolor ${beadMovementTime}s linear 1  forwards`;
+			document.querySelector(`.column-bead${i}`).children[0].children[0].style.animation = `reversecolor ${beadMovementTime}s linear 1  forwards`;
+		}
+	};
+	document.querySelector(`.reset-button`).style.animation = `clickReset ${beadMovementTime}s linear 1  forwards`;
 }
 
 function hardReset() {
 	// body...
-	// globallyGeneratedVariable = 0;
-	document.getElementById("value1").value = "0"
-	document.getElementById("value2").value = "0"
-	document.getElementById("value3").value = "0"
-	document.getElementById("value4").value = "0"
-	document.getElementById("firstValue").value = ""
-	document.getElementById("secondValue").value = ""
-	sum = 0 
-	var row = 4;
-	var column = 4;
-	for (var i = row - 0; i >= 1; i--) {
-	// Things[i]
-	
-	for (var w = column - 0; w >= 1; w--) {
-		//console.log(`row:${i};column${w}`);
-		console.log("reseting")
-		var selectedColumn = document.querySelector(`.bead${i}Row${w}`);
-		selectedColumn.style.animation = "reverseMovingLowerBead .35s linear 1 forwards"
-		//selectedColumn.style.transform = "translateY(190%)"
-		selectedColumn.children[0].children[0].style.animation = "reverseChangingColor .35s linear 1 forwards"
-		var selectedUpperColumn = document.querySelector(`.column-bead${w}`);
-		console.log(w)
-		console.log(selectedUpperColumn)
-		selectedUpperColumn.style.animation = "reverseMoveUpperBead .35s linear 1 forwards"
-		reset()
-		//selectedUpperColumn.style.transform = "translateY(10%)"
-		//selectedUpperColumn.children[0].children[0].style.fill = "FFD700"
-		//console.log(selectedColumn);
-	}
-	
-
-	}
+	valueArray.forEach(element => element.value = "0");
+	firstValue.value = "";
+	secondValue.value = "";
+	reset();
 }
 
-function assignBeadRT() {
+function assignBeadGlobal() {
 	// body...
 	reset()
-	let b1 = document.getElementById("value1");
-	let b2 = document.getElementById("value2");
-	let b3 = document.getElementById("value3");
-	let b4 = document.getElementById("value4");
-	let v = [b1, b2, b3, b4]
-	reset(v, false)
-	let b = [ Number(b1.value), Number(b2.value), Number(b3.value), Number(b4.value)
-		// {"b1" : b1}, 
-		// {"b2" : b2}, 
-		// {"b3" : b3}, 
-		// {"b4" : b4} 
-	]
-	let f = [{"b1":""}, {"b2":""}, {"b3":""}, {"b4":""}]
-	// console.log(b)
-	// if (b1 || b2 || b3 || b4 >9 || b1 || b2 || b3 || b4 < 0  ) {
-	// 	alert("please enter valid digit");
-	// 	b.forEach(element => element.value = "0")
-	// } else {
-	// 	console.log("Pass")
-	// }
-	// if (b.forEach() > 9) {
-	// 	alert("hmmmmmmm")
-	// }
-	//console.log(b)
-	for (var i = b.length + 1; i >= 0; i--) {
-		//console.log(b[i])
-		if (b[i] > 9 || b[i] < 0) {//console.log("Fail");
-			alert("please enter valid digit");
-			hardReset()
-			// for (var w = v.length - 1; i <= 0; i++) {
-			// 	//changeValue(v[w])
-			// 	v[w].value = "7";
-			// 	console.log(v[w].value);
-			// }
-			v.forEach(element => element.value = "0")
-			break
-		} else if(b[i] > 4) {
-			// console.log("Seperate", b[i])
-			// v[i] = 5 + b[i]-5
-			// console.log(v[i])
-			f[i] = 5;
-			let u = document.querySelector(`.column-bead${i+1}`);
-			u.style.animation = "moveUpperBead .35s linear 1 forwards"
-			u.children[0].children[0].style.animation = "changingColor .35s linear 1 forwards"
-			//u.style.transform = "translateY(40%)"
-			//u.children[0].children[0].style.fill = "#D2042D"
-			f[i] = b[i]-5
-			let ip = i
-			movingLowerBead(f[i], f, ip)
-			// for (var i = f.length - 1; i >= 0; i--) {
-			// 	console.log(f[i])
-			// }
-			// console.log(f)
-		} else if(b[i] <= 4){
-			console.log("less than/ equal to 4")
-			ip = b[i]
-			gg = i
-			console.log("ip:",ip)
-			movingLowerBead4(b[i], f, ip, gg)
+	for (var r= row; r >= 1; r--) {
+		let val = document.querySelector(`#value${r}`);
+		if (Number(val.value) <= 4) {
+			num = Number(val.value)
+			for (var n = num; n >= 1; n--) {
+				document.querySelector(`.bead${n}Row${r}`).style.animation = `lowerbead ${beadMovementTime}s linear 1  forwards`;
+				document.querySelector(`.bead${n}Row${r}`).children[0].children[0].style.animation = `color ${beadMovementTime}s linear 1  forwards`;
+			}
+		} else if (Number(val.value) >= 5) {
+			document.querySelector(`.column-bead${r}`).style.animation = `upperBead ${beadMovementTime}s linear 1  forwards`;
+			document.querySelector(`.column-bead${r}`).children[0].children[0].style.animation = `color ${beadMovementTime}s linear 1  forwards`;
+			var decNum = Number(val.value) - 5;
+			for (var dN = decNum; dN >= 1; dN--) {
+				document.querySelector(`.bead${dN}Row${r}`).style.animation = `lowerbead ${beadMovementTime}s linear 1  forwards`;
+				document.querySelector(`.bead${dN}Row${r}`).children[0].children[0].style.animation = `color ${beadMovementTime}s linear 1  forwards`;
+			}
 		}
 	}
 }
 
-function touchUpperBead(column) {
+function assignBeadRT(argument) {
 	// body...
-	let boi =  document.querySelector(`#value${column}`) 
-	let bvhvgb = 0
-	if (boi.value < "5") {
-		bvhvgb = Number(boi.value) + 5
-	} else if (boi.value > "5") {
-		bvhvgb = boi.value - 5
-	}
-	else {bvhvgb = 0}
-	boi.value = bvhvgb
-	
-	assignBead()
+	assignBeadGlobal()
 }
+
+function touchUpperBead(argument) {
+	// body...
+	let val = document.querySelector(`#value${argument}`);
+	let num = Number(val.value)
+	if (num <= 4 ) {
+		val.value = num + 5
+		assignBeadGlobal()
+	} else if (num >= 5) {
+		val.value = num -5
+		assignBeadGlobal()
+	}
+}
+
+
 function touchBead(column, row) {
 	let val = document.querySelector(`#value${row}`)
 	let columnChangedValue = "0"
@@ -378,106 +235,101 @@ function touchBead(column, row) {
 		columnChangedValue = column
 	}
 	val.value = columnChangedValue
-	console.log(row, val.value, column)
-	assignBead()
+	assignBeadGlobal()
 }
 
 
-function dummy() {
+function flashGameLevel(argument) {
 	// body...
-	changeArray = []
-	let firstValueBoi = document.querySelector(`#firstValue`)
-	let secondValueBoi = document.querySelector(`#secondValue`)	
-	let operator = String(document.getElementById("operator").value);
-	if (operator == 'add') {
-		sum = Number(firstValueBoi.value) + Number(secondValueBoi.value)
-		// console.log(sum);
-		// break
+	if (argument <= 1) {
+		fGD = 100;
+		levelReset();
+		document.querySelector(`#level1`).style.animation = `focused .1s linear 1 forwards`;
+
+	} else if (argument <= 2) {
+		fGD = 1000;
+		levelReset();
+		document.querySelector(`#level2`).style.animation = `focused .1s linear 1 forwards`;
+
+	}else if (argument <= 3) {
+		fGD =10000;
+		levelReset();
+		document.querySelector(`#level3`).style.animation = `focused .1s linear 1 forwards`;
+
+	} else if (argument <= 4) {
+		fGD = 1000000;
+		levelReset();
+		document.querySelector(`#level4`).style.animation = `focused .1s linear 1 forwards`;
+	}
+}
+function levelReset(argument) {
+	// body...
+	for (var i = 4; i >= 1; i--) {
+		document.querySelector(`#level${i}`).style.animation = `unfocused .3s linear 1 forwards`
+	}
+}
+
+function flashGame(argument) {
+	// body...
+	hardReset()
+	sH.textContent = `hide`
+	gNum =  Math.floor((Math.random() * argument) + 1);
+	console.log(gNum, argument)
+	firstValue.value = gNum;
+	getInputValue();
+	valueArray.forEach(element => element.value = `0`)
+}
+
+fG.addEventListener("click", function() {
+	flashGame(fGD);
+});
+
+function Sh(){
+	let num = firstValue.value;
+	if (num == 0) {
+		firstValue.value = String(gNum);
+		sH.textContent = `hide`;
+		getInputValue();
 	} else {
-		sum = Number(firstValueBoi.value) - Number(secondValueBoi.value)
-		// console.log(sum)
+		hardReset();
+		sH.textContent = `show`
 	}
-
-	// let outputForDummy =  
-	// console.log(firstValueBoi.value)
-	// console.log(sum)
-	stringify(firstValueBoi.value, changeArray)
-	console.log(changeArray)
-	if (secondValueBoi.value < 5) {
-		stringify(5, changeArray)
-		stringify(secondValueBoi -5, changeArray)
-	} 
-	
 }
-
-
-function stringify(argument, pushRequest) {
+function highlight(argument) {
 	// body...
-	  var output = [],
-  sNumber = argument.toString();
-  if (sNumber.length < 4) {
-			for (var w = sNumber.length + 1; w <= 4; w++) {
-				output.push(+sNumber.charAt(w))
-			}
-		}
-	for (var i = 0, len = sNumber.length; i < len; i += 1) {
-		
-    output.push(+sNumber.charAt(i));
-	}
-	// realValue.push(output)
-	pushRequest.push(output)
-	// console.log(pushRequest)
-
+	// const element = document.querySelector(`${argument}`).style;
+	// element.backgroundColor =  "#6eb9f7";
+	// element.backgroundSize =  `100%`;
+	// element.transition = `background 7s`;
+	// element.animation = `globalhighlight 2s linear 3`;
 }
 
+document.querySelector(`.ripple`).addEventListener(`click`, function() {
+	document.querySelector(`#docs`).style.animation = `rippleDocs 2s linear 1 forwards`
+});
+document.querySelector(`#check`).addEventListener(`click`, function() {
+	let num = document.querySelector(`#guessInput`);
+	if (num.value == 24) {
+		alert(`correct`)
+	} else {
+		alert(`try again`)
+	}
+});
 
-let globalAnimation = true;
-
-function showHide(argument) {
+let valueOpacity = 1;
+function removeValue() {
 	// body...
-	if (globalAnimation == false) {
-		document.getElementById("firstValue").style.animation = "show 1s linear 1  forwards";
-		document.getElementById("secondValue").style.animation = "show 1s linear 1  forwards";
-		document.getElementById("reset").style.animation = "show 1s linear 1  forwards";
-		document.getElementById("finalAns").style.animation = "show 1s linear 1  forwards";
-		document.getElementById("generate").style.animation = "show 1s linear 1  forwards";
-		document.getElementById("operator").style.animation = "show 1s linear 1  forwards";
-		document.getElementById("showHide").textContent = '<'
-		globalAnimation = true;
-		// alert('false')
-	} else if (globalAnimation == true){
-		document.getElementById("firstValue").style.animation = "Hide 1s linear 1 forwards";
-		document.getElementById("secondValue").style.animation = "Hide 1s linear 1 forwards";
-		document.getElementById("reset").style.animation = "Hide 1s linear 1 forwards";
-		document.getElementById("finalAns").style.animation = "Hide 1s linear 1 forwards";
-		document.getElementById("generate").style.animation = "Hide 1s linear 1 forwards";
-		document.getElementById("operator").style.animation = "Hide 1s linear 1 forwards";
-		document.getElementById("showHide").textContent = '>'
-
-		globalAnimation = false;
-		// alert('true')
+	if (valueOpacity <= 1) {
+		document.querySelector(`#bottomValue`).style.display = `none`;
+		document.querySelector(`.hide-value`).textContent = `show value`;
+		valueOpacity = 2
+	} else if (valueOpacity >= 2) {
+		valueOpacity = 1
+		document.querySelector(`#bottomValue`).style.display = `flex`;
+		document.querySelector(`.hide-value`).textContent = `hide value`;
 	}
-	console.log(globalAnimation)
 }
 
-
-if (screen.width >= 812) {
-	document.getElementById("form").style.transform = "translateX(-125px)"
-	document.getElementById("form").style.gridTemplateColumns = "repeat(3, 30px);"
-	document.getElementById("form").style.gridAutoRows = " 20px;"	
-} else if (screen.width >= 375) {
-	document.getElementById("form").style.transform = "translate(30%, -120%)";
-	document.getElementById("form").style.gridTemplateColumns = "repeat(3, 50px);"
-	document.getElementById("form").style.gridAutoRows = " 40px;"
-}
-
-if (screen.height == 667) {
-	document.getElementById("form").style.transform = "translate(50%, -110%)";
-	document.getElementById("form").style.gridAutoRows = " 30px;"
-} else if (screen.height == 1024 && screen.width ==1366 ) {
-	document.getElementById("form").style.transform = "translate(115%, 310%)"
-	document.getElementById("container").style.height = "50vh"
-} else if (screen.height == 1366 && screen.width == 1024) {
-	document.getElementById("form").style.transform = "translate(175%, 400%)"
-	document.getElementById("container").style.height = "50vh"
-}
+document.querySelector(`#Cross`).addEventListener(`click`, function() {
+	document.getElementById('pageZero').style.display = `none`;
+});
