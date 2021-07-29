@@ -3,50 +3,86 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Online Abacus</title>
-	<script data-ad-client="ca-pub-1062872145036169" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<meta name="Author" content="Shrree Radhey">
+	<meta name="keywords" content="Abacus, Abacus tool">
+	<meta name="description" content="This website is a tool for teachers or children regarding Abacus. ">
+	<link rel="icon" type="image/x-icon" href="./asset/icon.svg">
 	<link rel="stylesheet" type="text/css" href="./style.css">
-	<link rel="icon" type="image/x-icon" href="./asset/abacus.png">
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Yellowtail&display=swap" rel="stylesheet">
-	<!-- <script type="text/javascript" defer>
-		var b = document.querySelector("#container");
-		b.style.backgroundColor = "red"
-		console.log("hello")
-
-	</script> -->
 	<script type="text/javascript" src="./GET.js" defer></script>
+	<title>Online Abacus</title>
 </head>
-<body id="body">
+<body>
+	<div id="pageZero">
+		<div class="cZ">
+			<button type="button" id="Cross"> <strong>X</strong></button>
+			<h1 id="pttpfbe">Please tilt the phone for better experience</h1>
+		</div>
+	</div>
+
+	<nav>
+		<a href="#foo"> <strong>About us</strong> </a>
+		<a href="#ContactUS"> <strong>Contact us</strong> </a>
+		<a href="#tutorials"> <strong>Tutorials</strong> </a>
+		<a href="#Feedback"> <strong>Feedback</strong> </a>
+	</nav>
 	<div id="pageOne">
+		<div id="bar">
+			<div id="form">
+				<div class="inner-form">
+					<input type="number" min="0" max="4000000" id="firstvalue" placeholder="first no">
+					<input type="number" min="0" max="4000000" id="secondvalue" placeholder="second no">
+					<select name="operator" id="operator">
+						<option value="add">+</option>
+						<option value="min">-</option>
+					</select>
+					<button type="button" id="ans" onclick="getInputValue()" title="ans">Ans</button>
+					<button onclick="hardReset()" id="reset" title="Resets the whole abacus">reset</button>
+				</div>
+				<div class="level">
+					<h2 id="sl">Select level</h2>
+					<button type="button" onclick="flashGameLevel(1)" class="levels" id="level1" title="Recommended for new users"> <strong> beginner </strong></button>
+					<button type="button" onclick="flashGameLevel(2)" class="levels" id="level2" title="contains upto 3 digit"> <strong> Mid </strong></button>
+					<button type="button" onclick="flashGameLevel(3)" class="levels" id="level3" title="A litte hard, upto 4 digits."> <strong> expert </strong></button>
+					<button type="button" onclick="flashGameLevel(4)" class="levels" id="level4" title="Needs great attention"> <strong> Pro </strong></button>
+					<button type="button" onclick="removeValue()" class="hide-value" id="hv">  Hide value</button>
+				</div>
+			</div>
+			<button id="show-hide" onclick="showHide()" title="Open Level selector and calculator">-></button>
+		</div>
 		<div id="container">
 			<div id="frame">
-				<div class="rod rod1"></div>
-				<div class="rod rod2"></div>
-				<div class="rod rod3"></div>
-				<div class="rod rod4"></div>
-				<div id="form"><!-- 
-					<form action="./script.js"></form>	 -->
-						<input type="number" min="-30" max="4000" id="firstValue" placeholder="first no.">
-						<select name="operator" id="operator">
-							<option value="add">+</option>
-							<option value="min">-</option>
-						</select>
-						<input type="number" min="-30" max="4000" id="secondValue" placeholder="second no.">
-						<button type="submit" id="reset" onclick="hardReset()">RE</button>
-						<button type="button" id="finalAns" onclick="getInputValue()"> Ans </button>
-						<button id="generate" onclick="generate()">Flash Games</button>
-						<!-- <div id="comment"><h5>yes</h5></div> -->
-						<button id="showHide" onclick="showHide()"><</button>
-
+				<div class="reset-button" onclick="hardReset()" onclick="clickity()" title="Use this button to place all the beads at there default position."></div>
+				<button type="button" class="levelsB" id="flashGame" title="Let's play some games !">Flash Game !</button>
+				<button type="button" class="levelsB" id="sH" onclick="Sh()">Hide</button>
+				<div class="rods">
+					<div class="seperation"></div>
+					<div id="marking">
+						<div class="dot dot1" title="Or this..."></div>
+						<div class="dot"></div>
+						<div class="dot"></div>
+						<div class="dot dot2" title="Or this..."></div>
+						<div class="dot"></div>
+						<div class="dot"></div>
+						<div class="dot dot3" title="Use this as starting point."></div>
+					</div>
+					<div class="rod rod1"></div>
+					<div class="rod rod2"></div>
+					<div class="rod rod3"></div>
+					<div class="rod rod4"></div>
+					<div class="rod rod5"></div>
+					<div class="rod rod6"></div>
+					<div class="rod rod7"></div>
 				</div>
-				<button id="f" onclick="f()">show</button>
-				<div id="upper-column">
-					<div class="column-bead column-bead1" onclick="touchUpperBead(1)"><svg viewBox="0 0 60 60"><polygon fill="#FFD700"class="polygon"  points="32.5,0 27.5,0 0,30 27.5,60 32.5,60 60,30"/></svg></div>
-					<div class="column-bead column-bead2" onclick="touchUpperBead(2)"><svg viewBox="0 0 60 60"><polygon fill="#FFD700"class="polygon"  points="32.5,0 27.5,0 0,30 27.5,60 32.5,60 60,30"/></svg></div>
-					<div class="column-bead column-bead3" onclick="touchUpperBead(3)"><svg viewBox="0 0 60 60"><polygon fill="#FFD700"class="polygon"  points="32.5,0 27.5,0 0,30 27.5,60 32.5,60 60,30"/></svg></div>
-					<div class="column-bead column-bead4" onclick="touchUpperBead(4)"><svg viewBox="0 0 60 60"><polygon fill="#FFD700"class="polygon"  points="32.5,0 27.5,0 0,30 27.5,60 32.5,60 60,30"/></svg></div>
+				<div id="beads">
+						<div id="upper-column">
+							<div class="column-bead column-bead1" onclick="touchUpperBead(1)"><svg viewBox="0 0 60 60"><polygon fill="#FFD700"class="polygon"  points="32.5,0 27.5,0 0,30 27.5,60 32.5,60 60,30"/></svg></div>
+							<div class="column-bead column-bead2" onclick="touchUpperBead(2)"><svg viewBox="0 0 60 60"><polygon fill="#FFD700"class="polygon"  points="32.5,0 27.5,0 0,30 27.5,60 32.5,60 60,30"/></svg></div>
+							<div class="column-bead column-bead3" onclick="touchUpperBead(3)"><svg viewBox="0 0 60 60"><polygon fill="#FFD700"class="polygon"  points="32.5,0 27.5,0 0,30 27.5,60 32.5,60 60,30"/></svg></div>
+							<div class="column-bead column-bead4" onclick="touchUpperBead(4)"><svg viewBox="0 0 60 60"><polygon fill="#FFD700"class="polygon"  points="32.5,0 27.5,0 0,30 27.5,60 32.5,60 60,30"/></svg></div>
+							<div class="column-bead column-bead5" onclick="touchUpperBead(5)"><svg viewBox="0 0 60 60"><polygon fill="#FFD700"class="polygon"  points="32.5,0 27.5,0 0,30 27.5,60 32.5,60 60,30"/></svg></div>
+							<div class="column-bead column-bead6" onclick="touchUpperBead(6)"><svg viewBox="0 0 60 60"><polygon fill="#FFD700"class="polygon"  points="32.5,0 27.5,0 0,30 27.5,60 32.5,60 60,30"/></svg></div>
+							<div class="column-bead column-bead7" onclick="touchUpperBead(7)"><svg viewBox="0 0 60 60"><polygon fill="#FFD700"class="polygon"  points="32.5,0 27.5,0 0,30 27.5,60 32.5,60 60,30"/></svg>
+							</div>
 				</div>
 				<div id ="lower-column">
 					<div class="row 1">
@@ -54,47 +90,81 @@
 						<div class="bead2Row1 bead" onclick="touchBead(2,1)" ><svg viewBox="0 0 60 60"><polygon fill="#FFD700" class="polygon" points="32.5,0 27.5,0 0,30 27.5,60 32.5,60 60,30"/></svg></div>
 						<div class="bead3Row1 bead" onclick="touchBead(3,1)" ><svg viewBox="0 0 60 60"><polygon fill="#FFD700" class="polygon" points="32.5,0 27.5,0 0,30 27.5,60 32.5,60 60,30"/></svg></div>
 						<div class="bead4Row1 bead" onclick="touchBead(4,1)" ><svg viewBox="0 0 60 60"><polygon fill="#FFD700" class="polygon" points="32.5,0 27.5,0 0,30 27.5,60 32.5,60 60,30"/></svg></div>
-						<div class="numericValue">
-							<input type="number" min="0" max="9" placeholder="0" class="value" id="value1" onchange="assignBeadRT()">
-						</div>
+						
 					</div>
 					<div class="row 2">
 						<div class="bead1Row2 bead" onclick="touchBead(1,2)" ><svg viewBox="0 0 60 60"><polygon fill="#FFD700" class="polygon" points="32.5,0 27.5,0 0,30 27.5,60 32.5,60 60,30"/></svg></div>
 						<div class="bead2Row2 bead" onclick="touchBead(2,2)" ><svg viewBox="0 0 60 60"><polygon fill="#FFD700" class="polygon" points="32.5,0 27.5,0 0,30 27.5,60 32.5,60 60,30"/></svg></div>
 						<div class="bead3Row2 bead" onclick="touchBead(3,2)" ><svg viewBox="0 0 60 60"><polygon fill="#FFD700" class="polygon" points="32.5,0 27.5,0 0,30 27.5,60 32.5,60 60,30"/></svg></div>
 						<div class="bead4Row2 bead" onclick="touchBead(4,2)" ><svg viewBox="0 0 60 60"><polygon fill="#FFD700" class="polygon" points="32.5,0 27.5,0 0,30 27.5,60 32.5,60 60,30"/></svg></div>
-						<div class="numericValue">
-							<input type="number" min="0" max="9" placeholder="0" class="value" id="value2" onchange="assignBeadRT()">
-						</div>
+						
 					</div>
 					<div class="row 3">
 						<div class="bead1Row3 bead" onclick="touchBead(1,3)" ><svg viewBox="0 0 60 60"><polygon fill="#FFD700" class="polygon" points="32.5,0 27.5,0 0,30 27.5,60 32.5,60 60,30"/></svg></div>
 						<div class="bead2Row3 bead" onclick="touchBead(2,3)" ><svg viewBox="0 0 60 60"><polygon fill="#FFD700" class="polygon" points="32.5,0 27.5,0 0,30 27.5,60 32.5,60 60,30"/></svg></div>
 						<div class="bead3Row3 bead" onclick="touchBead(3,3)" ><svg viewBox="0 0 60 60"><polygon fill="#FFD700" class="polygon" points="32.5,0 27.5,0 0,30 27.5,60 32.5,60 60,30"/></svg></div>
 						<div class="bead4Row3 bead" onclick="touchBead(4,3)" ><svg viewBox="0 0 60 60"><polygon fill="#FFD700" class="polygon" points="32.5,0 27.5,0 0,30 27.5,60 32.5,60 60,30"/></svg></div>
-						<div class="numericValue">
-							<input type="number" min="0" max="9" placeholder="0" class="value" id="value3" onchange="assignBeadRT()">
-						</div>
 					</div>
 					<div class="row 4">
 						<div class="bead1Row4 bead" onclick="touchBead(1,4)" ><svg viewBox="0 0 60 60"><polygon fill="#FFD700" class="polygon" points="32.5,0 27.5,0 0,30 27.5,60 32.5,60 60,30"/></svg></div>
 						<div class="bead2Row4 bead" onclick="touchBead(2,4)" ><svg viewBox="0 0 60 60"><polygon fill="#FFD700" class="polygon" points="32.5,0 27.5,0 0,30 27.5,60 32.5,60 60,30"/></svg></div>
 						<div class="bead3Row4 bead" onclick="touchBead(3,4)" ><svg viewBox="0 0 60 60"><polygon fill="#FFD700" class="polygon" points="32.5,0 27.5,0 0,30 27.5,60 32.5,60 60,30"/></svg></div>
 						<div class="bead4Row4 bead" onclick="touchBead(4,4)" ><svg viewBox="0 0 60 60"><polygon fill="#FFD700" class="polygon" points="32.5,0 27.5,0 0,30 27.5,60 32.5,60 60,30"/></svg></div>
-						<div class="numericValue">
+					</div>
+					<div class="row 5">
+						<div class="bead1Row5 bead" onclick="touchBead(1,5)" ><svg viewBox="0 0 60 60"><polygon fill="#FFD700" class="polygon" points="32.5,0 27.5,0 0,30 27.5,60 32.5,60 60,30"/></svg></div>
+						<div class="bead2Row5 bead" onclick="touchBead(2,5)" ><svg viewBox="0 0 60 60"><polygon fill="#FFD700" class="polygon" points="32.5,0 27.5,0 0,30 27.5,60 32.5,60 60,30"/></svg></div>
+						<div class="bead3Row5 bead" onclick="touchBead(3,5)" ><svg viewBox="0 0 60 60"><polygon fill="#FFD700" class="polygon" points="32.5,0 27.5,0 0,30 27.5,60 32.5,60 60,30"/></svg></div>
+						<div class="bead4Row5 bead" onclick="touchBead(4,5)" ><svg viewBox="0 0 60 60"><polygon fill="#FFD700" class="polygon" points="32.5,0 27.5,0 0,30 27.5,60 32.5,60 60,30"/></svg></div>
+					</div>
+					<div class="row 6">
+						<div class="bead1Row6 bead" onclick="touchBead(1,6)" ><svg viewBox="0 0 60 60"><polygon fill="#FFD700" class="polygon" points="32.5,0 27.5,0 0,30 27.5,60 32.5,60 60,30"/></svg></div>
+						<div class="bead2Row6 bead" onclick="touchBead(2,6)" ><svg viewBox="0 0 60 60"><polygon fill="#FFD700" class="polygon" points="32.5,0 27.5,0 0,30 27.5,60 32.5,60 60,30"/></svg></div>
+						<div class="bead3Row6 bead" onclick="touchBead(3,6)" ><svg viewBox="0 0 60 60"><polygon fill="#FFD700" class="polygon" points="32.5,0 27.5,0 0,30 27.5,60 32.5,60 60,30"/></svg></div>
+						<div class="bead4Row6 bead" onclick="touchBead(4,6)" ><svg viewBox="0 0 60 60"><polygon fill="#FFD700" class="polygon" points="32.5,0 27.5,0 0,30 27.5,60 32.5,60 60,30"/></svg></div>
+				</div>
+				<div class="row 7">
+						<div class="bead1Row7 bead" onclick="touchBead(1,7)" ><svg viewBox="0 0 60 60"><polygon fill="#FFD700" class="polygon" points="32.5,0 27.5,0 0,30 27.5,60 32.5,60 60,30"/></svg></div>
+						<div class="bead2Row7 bead" onclick="touchBead(2,7)" ><svg viewBox="0 0 60 60"><polygon fill="#FFD700" class="polygon" points="32.5,0 27.5,0 0,30 27.5,60 32.5,60 60,30"/></svg></div>
+						<div class="bead3Row7 bead" onclick="touchBead(3,7)" ><svg viewBox="0 0 60 60"><polygon fill="#FFD700" class="polygon" points="32.5,0 27.5,0 0,30 27.5,60 32.5,60 60,30"/></svg></div>
+						<div class="bead4Row7 bead" onclick="touchBead(4,7)" ><svg viewBox="0 0 60 60"><polygon fill="#FFD700" class="polygon" points="32.5,0 27.5,0 0,30 27.5,60 32.5,60 60,30"/></svg></div>
+				</div>
+
+			</div>
+
+				</div>
+		</div>
+		<div id="bottomValue">
+					<div class="numericValue">
+							<input type="number" min="0" max="9" placeholder="0" class="value" id="value1" onchange="assignBeadRT()">
+						</div>
+					<div class="numericValue">
+							<input type="number" min="0" max="9" placeholder="0" class="value" id="value2" onchange="assignBeadRT()">
+						</div>
+					<div class="numericValue">
+							<input type="number" min="0" max="9" placeholder="0" class="value" id="value3" onchange="assignBeadRT()">
+						</div>
+					<div class="numericValue">
 							<input type="number" min="0" max="9" placeholder="0" class="value" id="value4" onchange="assignBeadRT()">
 						</div>
-						<button type="submit" id="Ent" onclick="assignBead()">Ent</button>
-					</div>
+					<div class="numericValue">
+							<input type="number" min="0" max="9" placeholder="0" class="value" id="value5" onchange="assignBeadRT()">
+						</div>
+					<div class="numericValue">
+							<input type="number" min="0" max="9" placeholder="0" class="value" id="value6" onchange="assignBeadRT()">
+						</div>	
+					<div class="numericValue">
+							<input type="number" min="0" max="9" placeholder="0" class="value" id="value7" onchange="assignBeadRT()">
+						</div>
+					<!-- <button type="submit" id="Ent" onclick="assignBead()">Ent</button> -->
 				</div>
-			</div>
-		</div>
 	</div>
-		<!-- 
-			"div#frame>#upper-column>.column$*4.>img.bead[src="./asset/bead.png"]+.lower-column>div.row.$*4>.bead$*4>img[src="./asset/bead.png"]" => emmet abbreviation
-		-->
 	</div>
 	<div id="pageTwo">
+		<div id="AboutUs">
+			<div class="about">this website is made by Shrree Radhey Institute for Abacus to provide comfort to Teachers/Tutors as well as children regarding Abacus.</div> 
+			<div class="content">This website has an <a href="#frame" onclick="highlight(`#frame`)">Abacus tool</a>, <a href="#flashGame" onclick="highlight(`#flashGame`)">flash Game</a> for tutors and <a href="#tutorials">tutorials</a> about working of an abacus. </div>
+		</div>
 		<div class="intro">
 			<h1>What is Abacus ?</h1>
 			<h4>Abacus is an instrument used for making the calclation much easier. </h4>
@@ -104,23 +174,173 @@
 			<h1>How to use this Tool</h1>
 			<br>
 			<h3 class="darkblue">basic calculation</h3>
-			<h4>Enter first and second digit in the given slot and press <span>Ans</span> or <span>A</span> key in your keyBoard. </h4>
+			<h4>Enter first and second digit in the given slot and press <span> <a href="#ans"> Ans </a></span> or <span>A</span> key in your keyBoard. </h4>
 			<h4>You can also move the beads either by touching or clicking on them </h4>
 			<br>
-			<h3 class="darkblue">Flash Cards</h3>
+			<h3 class="darkblue"><a href="#flashGame">Flash Cards</a> </h3>
 			<h4>This little fun game is used to develop photographic memory of the student.</h4>
-			<h4>Tutor clicks on the <span>Flash Games</span> button and quickly shut the display by clicking on <span>show</span> <span>hide</span> button.  </h4>
+			<h4>Tutor clicks on the <span><a href="#flashGame">Flash Games !</a></span> button and quickly shut the display by clicking on <span><a href="#show-hide">show</a></span> <span><a href="#show-hide">hide</a></span> button.  </h4>
 			<h4>student has to answer as soon as the display shuts or he/She loses.</h4>
+			<h3 class="darkblue">Choosing levels</h3>
+			<br>
+			<h4>You can also choose level as per the students capabilty</h4>
+			<h4>-> Go to the bar menu at the top left corner of tool.</h4>
+			<h4>-> Choose levels accordingly</h4>
+			<h4>There are in total 4 levels to compete</h4>
+			<h4><a href="#level1">1.Beginner</a></h4>
+			<h5>Beginner level contains upto 2 digits </h5>
+			<h4><a href="#level2">2.mid</a></h4>
+			<h5>mid level contains upto 3 digits </h5>
+			<h4><a href="#level3">3.Experienced</a></h4>
+			<h5>Experienced level contains 4 upto digits </h5>
+			<h4><a href="#level4">4.pro</a></h4>
+			<h5>pro level contains upto 7 digits </h5>
+			<h2 class="darkblue">Key bindings</h2>
+			<h4>If you are Working on a laptop then there are some keys which could perform several function for you.</h4>
+			<h4><span class="highlight"> Even if you are working on a device other than keyboard device, then there are buttons in every device to perform respected function.</span></h4>
+			<h3 class="darkblue">Answer</h3>
+			<h4>Press <span class="key">A</span>or <span class="key">a</span> key to obtain the value of number you entered in the value bars. </h4>
+			<h3 class="darkblue">Reset</h3>
+			<h4>Press <span class="key">R</span>or<span class="key">r</span> to null the abacus.</h4>
+			<h3 class="darkblue">FlashGame</h3>
+			<h4>Press <span class="key">F</span>or <span class="key">f</span> to start flash game.</h4>
+			<h3 class="darkblue">Hide (Flash game)</h3>
+			<h4>Press <span class="key">H</span>or<span class="key">h</span> to hide the value in abacus.  </h4>
+			<h3 class="darkblue">Bar</h3>
+			<h4>Press <span class="key">'->'</span>,
+			<span class="key">`Forward key`</span> to open bar, and Press <span class="key">'<-'</span>,
+			<span class="key">`Backward key`</span>to close it down. </h4>
+			<h3 class="darkblue">Hide Values</h3>
+			<h4>Press <span class="key">V</span> or <span class="key">v</span> to hide the values under the abacus tool. </h4>
+			<h3 class="darkblue">Clear</h3>
+			<h4>Press <span class="key">C</span> or <span class="key">c</span> to put Tool and bar to its default setting. </h4>
+			<br>
+			<div id="tutorials">
+				<h1 class="darkblue"> Why abacus ?</h1>
+				<h4>Concentration</h4>
+				<h3>"When you are vigilant at your aim NOTHING can stop you!"</h3>
+				<h4>Calculation speed</h4>
+				<h3>A better calculation speed WITHOUT 	calculator is always icing to the cake. </h3>
+				<h4>Accuracy</h4>
+				<h3>faster calculation also requires great accuracy to be meaningful.	</h3>
+				<h4>Memory</h4>
+				<h3>Sharp memory also helps in great development of the child.</h3>
+				<h1 class="darkblue">How to start with abacus?</h1>
+				<h3>Abacus can be used from addition and subtraction to finding Square or square root.</h3>
+				<section>
+					<h3>To understand different concepts of abacus we have arranged them in different Catagories:</h3>
+					<h3>Addition & Subtraction</h3>
+					<ol class="ol">
+						<li>Single digits</li>
+						<li>Double digits</li>
+						<li>Triple digits</li>
+						<li>These are the common combination used by people but you can go even further, upto 7-10 digits!</li>
+					</ol>
+					<h3>Multiplication & Division</h3>
+					<h4>We generaly use combinations such as 1X2, 3X4 to refer multiplication.</h4>
+					<ol class="ol">
+						<li>1digit by 1digit</li>
+						<li>2digit by 1digit</li>
+						<li>3digit by 1digit</li>
+						<li>2digit by 2digit</li>
+						<li>3digit by 2digit</li>
+						<li>3digit by 3digit</li>
+						<li>4digit by 3digit</li>
+					</ol>
+					<h3>Decimals</h3>
+					<h3>H.C.F & L.C.M</h3>
+					<h3>Percentage</h3>
+					<h3>Roots</h3>
+					<ol>
+						<li>Square roots</li>
+						<li>Cube roots</li>
+					</ol>
+				</section>
+				<h3><span class="highlight"> The tutorials below can help you spark some interest or show the overview of abacus.</span></h3>
+				<h3>If you want to know more about please <a href="#ContactUS">contact us</a>.</h3>
+				<h2>Let’s get started!</h2>
+				<h3 class="darkblue">level 0</h3>
+				<h3>To start with abacus we need to understand how to form beads, understand them and play with them a little on the online tool present above you. If you have a physical tool then that is also great.</h3>
+				<h2 class="darkblue">Position</h2>
+				<h3 class="darkblue" >Reset button</h3>
+				<h4>this button is usually at the top left side of the tool. It is used to nullify the value of abacus</h4>
+				<h3 class="darkblue" >Value bar</h3>
+				<h4>value bar separates the heaven and earth beads and contains marking or center points</h4>
+				<h4>These marking points are used to mark the starting of a new number. There standard color is white </h4>
+				<h3 class="darkblue" >Beads:Heaven and Earth bead</h3>
+				<h3 class="darkblue" >Heaven bead</h3>
+				<h4>the value of each heaven bead in the given columns(`s) is 5. These beads are situated at the top of value Bar.</h4>
+				<img src="./asset/abacus-label.png" alt="Basic labelling" class="screenShot">
+				<h4>To form an number in tool we need to move the beads accordingly, like move heaven beads downwards whereas  for an earth bead we move it upwards </h4>
+				<h4>an example of heaven bead number formation:</h4>
+				<img src="./asset/5.png" alt="5" class="screenShot">
+				<h3 class="darkblue" >Earth bead</h3>
+				<h4>The value of each Earth bead in the given columns(`s) is 1 and are in the pair of  4. These beads are situated at the bottom of value Bar.</h4>
+				<h4>Few example of earth beads together </h4>
+				<img src="./asset/1.png" alt="1" class="screenShot">
+				<img src="./asset/2.png" alt="2" class="screenShot">
+				<img src="./asset/4.png" alt="4" class="screenShot">
+				<h4>Merging earth and heaven beads to form greater numbers;</h4>
+				<img src="./asset/6.png" alt="6" class="screenShot">
+				<h4>Here we add heaven bead of value 5 along with 1 earth bead of value 1 to form a number 6.</h4>
+				<h4>Just like this we can make number upto 9 in a single column.</h4>
+				<img src="./asset/9.png" alt="9" class="screenShot">
+				<h4>After 9 we can go 10's digit like:</h4>
+				<img src="./asset/10.png" alt="10" class="screenShot">
+				<h4>Ten</h4>
+				<h4>Some example of double digit:</h4>
+				<img src="./asset/52.png" alt="52" class="screenShot">
+				<h4>Fifty two</h4>
+				<img src="./asset/69.png" alt="noice" class="screenShot">
+				<h4>Sixty nine</h4>
+				<h3 class="darkblue">Let`s try Guessing the number</h3>
+				<h4>write down the number you see below</h4>
+				<div class="guess">
+					<div id="img24"><img src="./asset/24.png" alt="24" ></div>
+					<div class="guessInputContainer">
+						<input type="number" max="100" min="0" placeholder="type the number!" id="guessInput">
+						<button type="button" id="check">check</button>
+						<h2 id="tg">Try again</h2>
+						<h2 id="great">Great !</h2>
+					</div>
+				</div>
+				<h3 class="darkblue">Play more!</h3>
+				<h4>after you have learned how to read numbers out of abacus, now is the time to form numbers </h4>
+				<h4>Use the <a href="#frame">Tool</a> to form the following numbers : 1, 7, 12, 15, 32</h4>
+				<h4>If you need help just use the calculator at the <a href="#show-hide">bar</a>.</h4>
+				<h3 class="darkblue">Now you Know</h3>
+				<h4>What is abacus</h4>
+				<h4>How to Read beads </h4>
+				<h4>How to form numbers</h4>
+			</div>
+
+		</div>
+		<h2 class="darkblue">Contact Us</h2>		
+		<div id="ContactUS">
+			<h3>Mail us your Query at:</h3>
+			<a href="mailto:shrreeradheyinstitute@gmail.com" id="mailid">shrreeradheyinstitute@gmail.com
+			</a>
+			<h2 class="darkblue">Our location</h2>
+			<div id="mapContainer">
+				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d28013.679323563127!2d77.26933549513916!3d28.63845499013071!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x3871fff65d0c5bd7!2sHanuman%20Mandir!5e0!3m2!1sen!2sin!4v1627158755292!5m2!1sen!2sin"  style="border:0;" allowfullscreen="" loading="lazy" id="maps"></iframe>
+			</div>
+
+		</div>
+		<div id="Feedback">
+			<button class="ripple"> <h5>Give feedback here!</h5> </button>
+			<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfVgE3j_UvhmzrkPRJYAP84pm0Wov3ri5oDXcoc2PztZN5B3A/viewform?embedded=true" width="640" height="1200" frameborder="0" marginheight="0" marginwidth="0" id="docs">Loading…</iframe>
 		</div>
 	</div>
 	<footer>
-		<div class="footer">
+		<div class="footer" id="foo">
+			<h3>About us</h3>
+			<h4>Shrree Radhey Institute is an educational centre situated at delhi,India which aims at developing Students mind</h4>
 			<h4>
 				the aim of this website is to demonstrate about working of an abacus and play a few games alongside.
 			</h4>
-			<h4>this website is made by &copy Shrree Radhey institute</h4>
+			<h4>this website is made by &copy Shree Radhey institute</h4>
+			<br>
 		</div>
 	</footer>
-	<script type="text/javascript" src="./script.js" ></script>
 </body>
 </html>
