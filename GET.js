@@ -274,7 +274,6 @@ function flashGame(argument) {
 	hardReset()
 	sH.textContent = `hide`
 	gNum =  Math.floor((Math.random() * argument) + 1);
-	console.log(gNum, argument)
 	firstValue.value = gNum;
 	getInputValue();
 	valueArray.forEach(element => element.value = `0`)
