@@ -6,6 +6,9 @@
 /*for flash games*/
 @import url('https://fonts.googleapis.com/css2?family=Otomanopee+One&display=swap');
 
+h4 {
+	font-size: 1.3rem;
+}
 
 * {
 	padding: 0;
